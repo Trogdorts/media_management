@@ -1,0 +1,36 @@
+# This is the default config file
+download_directories:
+  complete:
+    movies: Z:\downloads\complete\movies
+    tv_shows: Z:\downloads\complete\tv
+  duplicate:
+    movies: Z:\downloads\duplicate\movies
+    tv_shows: Z:\downloads\duplicate\tv
+  incomplete:
+    movies: Z:\downloads\incomplete
+    tv_shows: Z:\downloads\incomplete
+logging:
+  file: logs/app.log
+  level: DEBUG
+media_libraries:
+  movies: Z:\media\movies
+  tv_shows:
+    adult: Z:\media\tv_shows\adult
+    kids: Z:\media\tv_shows\kids
+settings:
+  movies:
+    days_to_keep_completed_downloads: 30
+    days_to_keep_duplicate_downloads: 30
+    days_to_keep_incomplete_downloads: 30
+    delete_failed: true
+    delete_unpack: true
+    move_to_duplicates: true
+    move_to_library: false
+  tv_shows:
+    days_to_keep_completed_downloads: 30
+    days_to_keep_duplicate_downloads: 30
+    days_to_keep_unpack: 2
+    delete_failed: true
+    delete_unpack: false
+    move_to_duplicates: true
+    move_to_library: false
