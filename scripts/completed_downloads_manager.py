@@ -53,6 +53,11 @@ class MovieProcessor:
         for directory_path in directory_paths:
             cleaned_name = self.clean_movie_directory_name(directory_path)
 
+            # Skip processing if cleaned_name is None
+            if cleaned_name is None:
+                logging.info(f"Skipping directory '{directory_path}' due to invalid naming format.")
+                continue
+
             new_directory_path = None
             if self.move_to_library_movies:
                 temp_directory_path = os.path.join(self.movie_library, cleaned_name)
@@ -66,7 +71,8 @@ class MovieProcessor:
                 temp_directory_path = os.path.join(self.duplicate_movies_downloads_path, cleaned_name)
                 count = 1
                 while os.path.exists(temp_directory_path):
-                    temp_directory_path = os.path.join(self.duplicate_movies_downloads_path, f"{cleaned_name} ({count})")
+                    temp_directory_path = os.path.join(self.duplicate_movies_downloads_path,
+                                                       f"{cleaned_name} ({count})")
                     count += 1
                 new_directory_path = temp_directory_path
                 logging.info(f"Moving '{cleaned_name}' to '{new_directory_path}'")
@@ -75,7 +81,8 @@ class MovieProcessor:
                 temp_directory_path = os.path.join(self.completed_movies_downloads_path, cleaned_name)
                 count = 1
                 while os.path.exists(temp_directory_path):
-                    temp_directory_path = os.path.join(self.completed_movies_downloads_path, f"{cleaned_name} ({count})")
+                    temp_directory_path = os.path.join(self.completed_movies_downloads_path,
+                                                       f"{cleaned_name} ({count})")
                     count += 1
                 new_directory_path = temp_directory_path
                 logging.info(f"Renaming '{directory_path}' to '{new_directory_path}'")
